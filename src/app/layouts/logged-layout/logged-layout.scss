@@ -1,8 +1,38 @@
-a{
-    text-decoration: none;
-}
+
 nav {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-left: 500px;
+    padding-right: 500px;
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.3s;
+    padding: 10px 20px;
+    background-color: rgb(113, 101, 248);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+    
+a:hover {
+    background-color: darkblue;
+}
+
+
+button{
+    text-decoration: none;
+    transition: color 0.3s;
+    padding: 10px 20px;
+    background-color: rgb(33, 30, 74);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+button:hover{
+    background-color: rgb(77, 77, 209);
 }

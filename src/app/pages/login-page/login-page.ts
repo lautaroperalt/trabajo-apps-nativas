@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import { AuthService } from '../../service/auth-service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Spinner } from "../../components/spinner/spinner";
 
 @Component({
@@ -16,13 +16,14 @@ export class LoginPage {
   authService = inject(AuthService)  
   isLoading = false;
 
-  async login(form:any){
+  async login(form:NgForm){
     console.log(form.value)
     this.errorLogin = false;
     if(!form.value.email || !form.value.password){
       this.errorLogin = true;
       return
     }
+
     this.isLoading = true;
     this.authService.login(form.value);
     this.isLoading = false;

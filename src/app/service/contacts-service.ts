@@ -25,12 +25,20 @@ async getContacts() {
 
   getContactById(){}
 
-  createContact(nuevoContacto:NewContact){
-    const contacto:Contact ={
-      ...nuevoContacto,
-      id: Math.random().toString()
-    }
-    this.contacts.push(contacto);
+async createContact(nuevoContacto:NewContact){
+  const res = await fetch("https://agenda-api.somee.com/api/contacts",{
+      method: "POST", //* indica que es una solicitud de crear
+      headers:{
+        Authorization: "Bearer "+this.AuthService.token, //* envia el TOKEN
+    },
+      body: JSON.stringify(nuevoContacto), //* lo convierte en JSON
+});
+
+if (res.ok){
+  const createdContact = await res.json(); //* obtiene el contacto y lo convierte en una variable
+  this.contacts.push(createdContact); //* lo pushea a contacts
+}
+  
   }
   
   editContact(){}

@@ -2,6 +2,10 @@
     <a routerLink="login">Ir a login</a>
 </div>
 
+<div class="title">
+    <a routerLink="newContact">Crear un contacto</a>
+</div>
+
 <div id="header">
 <ul>
     <li>
@@ -17,64 +21,4 @@
     @for (ContactoIndividual of contactsService.contacts; track $index) {
         <app-contact-list-item [contact] ="ContactoIndividual"></app-contact-list-item>
     }
-
 </ul>
-
-<h2>Nuevo contacto</h2>
-<div class="form-container">
-<form (ngSubmit)="createContact(newContactForm.value)" #newContactForm="ngForm">
-  <div class="form-div">
-    <label for="first-name">Nombre</label>
-    <input id="first-name" name="firstName" type="text" ngModel required="true" minlength="2" maxlength="20" #firstName="ngModel">
-  @if (firstName.dirty && firstName.invalid) {
-    <p class="error">El nombre es obligatorio y no puede ser una sola letra</p>
-  }
-  </div>
-  <div class="form-div">
-    <label for="last-name">Apellido</label>
-    <input id="last-name" name="lastName" type="text" ngModel maxlength="20">
-
-  </div>
-  <div class="form-div">
-    <label for="phone">Telefono</label>
-    <input id="phone" name="number" type="text" ngModel required="true" minlength="3" maxlength="30" #number="ngModel">
-  @if (number.dirty && number.invalid) {
-    <p class="error">El numero es obligatorio y no puede ser una de 3 letras</p>
-  }
-  </div>
-  <div class="form-div">
-    <label for="email">Email</label>
-    <input id="email" name="email" type="email" ngModel maxlength="40"  #email="ngModel">
-  @if (email.dirty && email.invalid) {
-    <p class="error">El email debe llevar un arroba</p>
-  }
-  </div>
-  <div class="form-div">
-    <label for="favourite">Favorito</label>
-    <input id="favourite" name="isFavourite" type="checkbox" ngModel>
-  </div>
-  <div class="form-div">
-    <label for="address">Direccion</label>
-    <input id="address" name="address" type="text" ngModel minlength="5" #address="ngModel">
-  @if (address.dirty && address.invalid) {
-    <p class="error">La direccion tiene que ser minimo 5 caracteres</p>
-  }
-  </div>
-  <div class="form-div">
-    <label for="company">Companía</label>
-    <input id="company" name="company" type="text" ngModel minlength="2" #company="ngModel">
-  @if (company.dirty && company.invalid) {
-    <p class="error">Tiene que ser de minimo 2 caracteres</p>
-  }
-  </div>
-  <div class="form-div">
-    <label for="image">URL Imagen</label>
-    <input id="image" name="image" type="text" ngModel minlength="10" #image="ngModel">
-  @if (image.dirty && image.invalid) {
-    <p class="error">El url tiene que ser de minimo 10 caracteres</p>
-  }
-  </div>
-  <button [disabled]="newContactForm.invalid">+</button>
-
- </form>
-</div>
