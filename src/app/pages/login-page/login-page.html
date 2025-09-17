@@ -20,7 +20,7 @@
       } 
     </div>
 
-    <button [disabled]="isLoading ||  registerForm.invalid">Iniciar sesión</button>
+    <button [disabled]="isLoading || loginForm.invalid">Iniciar sesión</button>
     @if (isLoading){
       <app-spinner></app-spinner>
     }
