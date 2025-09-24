@@ -6,7 +6,8 @@ import { LoggedLayout } from './layouts/logged-layout/logged-layout';
 import { RegisterPage } from './pages/register-page/register-page';
 import { onlyPublicUserGuard } from './guards/only-public-user-guard';
 import { onlyLoggedUserGuard } from './guards/only-logged-user-guard';
-import { ContactsNew } from './pages/new-contact/contacts-new';
+import { ContactsNew } from './pages/contacts-new/contacts-new';
+import { Groups } from './pages/groups/groups';
 
 export const routes: Routes = [
     {
@@ -32,8 +33,15 @@ export const routes: Routes = [
                 path: 'contacts/:id',
                 component: ContactDetailsPage
             },
-            {   path: 'newContact',
+            {   path: 'contacts/new',
                 component: ContactsNew
+            },
+            {   path: 'contacts/:idContacto/edit',
+                component: ContactsNew
+            },
+            {
+                path: "groups",
+                component: Groups
             },
         ]
     },
