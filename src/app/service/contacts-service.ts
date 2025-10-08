@@ -62,20 +62,19 @@ async editContact (contactoEditado:Contact){
       body: JSON.stringify(contactoEditado),
 });
 if (!res.ok) return;
-  const resContact:Contact = await res.json(); //* obtiene el contacto y lo convierte en una variable
   
   /** Edita la lista actual de contacts reemplazando solamente el que editamos */
   this.contacts = this.contacts.map(contact => {
-    if(contact.id === resContact.id) {
-    return resContact;
+    if(contact.id === contactoEditado.id) {
+    return contactoEditado;
   };
     return contact;
   });
-  return resContact;
+  return contactoEditado;
 }
   
   async deleteContact(id: string | number){
-    const res = await fetch("https://agenda-api.somee.com/api/contacts/"+id
+    const res = await fetch("https://agenda-api.somee.com/api/contacts/"+id,
     {
       method: "DELETE",
       headers:{
@@ -86,6 +85,7 @@ if (!res.ok) return;
     this.contacts = this.contacts.filter(contact => contact.id !== id)
     return true;
   }
+  
   async setFavourite(id:string | number ){
     const res = await fetch("https://agenda-api.somee.com/api/contacts/"+id+"favourite",
     {

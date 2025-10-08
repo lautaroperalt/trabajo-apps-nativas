@@ -1,12 +1,13 @@
-import { Component, ElementRef, inject, input, OnInit, viewChild } from '@angular/core';
+import { Component, inject, input, OnInit, viewChild } from '@angular/core';
 import { Contact, NewContact } from '../../Interfaces/contact';
 import { ContactsService } from '../../service/contacts-service';
-import { Form, FormsModule, NgForm } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Spinner } from '../../components/spinner/spinner';
 
 @Component({
   selector: 'app-contacts-new',
-  imports: [FormsModule, RouterModule],
+  imports: [FormsModule, Spinner],
   templateUrl: './contacts-new.html',
   styleUrl: './contacts-new.scss'
 })
@@ -17,33 +18,52 @@ export class ContactsNew implements OnInit {
   
   idContacto = input<number>();
   contactoOriginal:Contact|undefined = undefined;
-  form = viewChild<ElementRef<Form>>('newContactForm');
+  form = viewChild<NgForm>('newContactForm');
+  isLoading = false
 
   async ngOnInit() {
     if(this.idContacto()){
       this.contactoOriginal = await this.contactsService.getContactById(this.idContacto()!);
-      console.log(this.contactoOriginal)
+      // Cambio los valores del formulario
+      this.form()?.setValue({
+        firstName: this.contactoOriginal!.firstName,
+        lastName: this.contactoOriginal!.lastName,
+        address: this.contactoOriginal!.address,
+        email: this.contactoOriginal!.email,
+        image: this.contactoOriginal!.image,
+        number: this.contactoOriginal!.number,
+        company: this.contactoOriginal!.company,
+        isFavourite: this.contactoOriginal!.isFavourite
+      })
     }
   }
-
-  async createContact(form:NgForm){
+//* Revisa si estamos editando o creando un contacto y ejecuta la funcion correspondiente del servicio de contactos
+  async handleFormSubmission(form:NgForm){
     this.errorEnBack = false;
-    const nuevoContacto: NewContact ={
-      firstName: form.value.firstName,
-        lastName: form.value.lastName,
-        address: form.value.address,
-        email: form.value.email,
-        image: form.value.image,
-        number: form.value.number,
-        company: form.value.company,
-        isFavourite: form.value.isFavorite
-    }
-  
-    const res = await this.contactsService.createContact(nuevoContacto);
-    if(!res) {
-      this.errorEnBack = true;
-      return
-    };
-    this.router.navigate(["/contacts",res.id]);
+      const nuevoContacto: NewContact ={
+        firstName: form.value.firstName,
+          lastName: form.value.lastName,
+          address: form.value.address,
+          email: form.value.email,
+          image: form.value.image,
+          number: form.value.number,
+          company: form.value.company,
+          isFavourite: form.value.isFavourite
+      }
+      let res;
+      //"const res = await this.contactsService.createContact(nuevoContacto);"
+      this.isLoading = true
+      if(this.idContacto()){
+        res = await this.contactsService.editContact({...nuevoContacto,id: this.idContacto()!.toString()})
+      } else{ 
+        res = await this.contactsService.createContact(nuevoContacto);
+      }
+      this.isLoading = false
+      if(!res) {
+        this.errorEnBack = true;
+        return
+      };
+      this.router.navigate(["/contacts",res.id]);  
+
   }
 }

@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ContactsPage implements OnInit{
   ngOnInit(): void {
-    this.contactsService.getContacts();
+    this.contactsService.getContacts(); //carga los contactos al iniciar
   }
 
   authService = inject(AuthService);

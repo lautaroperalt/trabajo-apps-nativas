@@ -1,6 +1,11 @@
-<h2>Nuevo contacto</h2>
+<!-- el idContacto es un input que va siempre con () -->
+@if (idContacto()) { 
+<h2>Editar contacto</h2>
+} @else {
+  <h2>Nuevo contacto</h2>
+}
 <div class="form-container">
-<form (ngSubmit)="createContact(newContactForm.value)" #newContactForm="ngForm">
+<form (ngSubmit)="handleFormSubmission(newContactForm)" #newContactForm="ngForm">
   <div class="form-div">
     <label for="first-name">Nombre</label>
     <input id="first-name" name="firstName" type="text" ngModel required="true" minlength="2" maxlength="20" #firstName="ngModel">
@@ -52,7 +57,15 @@
     <p class="error">El url tiene que ser de minimo 10 caracteres</p>
   }
   </div>
-  <button [disabled]="newContactForm.invalid">+</button>
-
+  @if (idContacto()) { 
+      <button [disabled]="newContactForm.invalid || isLoading">Editar</button>
+    } @else {
+      <button [disabled]="newContactForm.invalid || isLoading">Crear</button>
+    }
+  
+  @if (isLoading){
+    <app-spinner></app-spinner>
+    }
+  
  </form>
 </div>
