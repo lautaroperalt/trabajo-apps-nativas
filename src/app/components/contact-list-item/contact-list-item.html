@@ -1,18 +1,16 @@
 
-<div  class="contact-row" [class.favourite]="contact().isFavourite === true">
+<div  class="contactRow" [class.favourite]="contact().isFavourite === true">
     <span>
-        {{contact().firstName}} {{contact().lastName}}  @if (contact().isFavourite === true) {⭐}
+        {{contact().firstName}} {{contact().lastName}} 
     </span>
     <span>{{contact().number}}</span>
     <span>{{contact().email}}</span>
     <span>-</span>
-    <span>
-        <button (click)="openDeleteModal()">Borrar</button>
-        <a [routerLink]="['/contacts',contact().id,'edit']"> Editar</a>
+    <span class="actions">
+        <button class="mainButton" (click)="openDeleteModal()">Borrar</button>
+        <a  class="btnLink"[routerLink]="['/contacts', contact().id, 'edit']"> Editar</a>
     </span>
-    <span>
-        @if (contact().isFavourite === true) { ⭐}
-    </span>
+    @if (contact().isFavourite === true) {⭐}
 </div>
 
-<!-- Si quiero mostrar todos los atributos, los agrego aca -->
+<!-- Si quiero mostrar todos los atributos, los agrego aca --> 

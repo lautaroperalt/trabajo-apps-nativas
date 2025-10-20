@@ -1,22 +1,49 @@
-.contact-row {
-display: flex;
-justify-content: space-between;
-margin: 10px auto;
-padding: 10px;
-width: 80%;
-background-color: white;
-color: black;
-font-size: 16px;
-border-bottom: 1px solid #ccc;
+.contactRow{
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 2fr 1fr 1fr; /* Nombre, Teléfono, Email, Grupos, Acciones */
+    column-gap: 12px;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 12px;
+    width: min(1100px, 95%);
+    background: #fff;
+    color: #000;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
 }
 
-.contact-row span {
-width: 20%;
-text-align: left;
-}
-
-.favourite {
-background-color: lightgreen;
-font-weight: bold;
+.favourite{ 
+    background-color: lightgreen; 
+    font-weight: bold; 
 }
   
+.actions{
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+}
+  
+.actions .mainButton{
+    padding: 6px 8px;
+    background-color: rgb(151, 149, 241);
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 10px;
+}
+.actions .mainButton:hover{ 
+    background-color: rgb(20, 0, 237); 
+}
+  
+.actions .btnLink{
+    display: inline-block;
+    padding: 6px 8px;
+    border-radius: 10px;
+    text-decoration: none;
+    background: #eef;
+    color: #000;
+}
+
+.actions .btnLink:hover{ 
+    background-color: rgb(217, 217, 225);
+ }

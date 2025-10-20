@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 import { LoginPage } from './pages/login-page/login-page';
 import { ContactsPage } from './pages/contacts-page/contacts-page';
-import { ContactDetailsPage } from './pages/contact-details-page/contact-details-page';
 import { LoggedLayout } from './layouts/logged-layout/logged-layout';
 import { RegisterPage } from './pages/register-page/register-page';
 import { onlyPublicUserGuard } from './guards/only-public-user-guard';
 import { onlyLoggedUserGuard } from './guards/only-logged-user-guard';
 import { ContactsNew } from './pages/contacts-new/contacts-new';
 import { Groups } from './pages/groups/groups';
+import { ContactsDetails } from './pages/contacts-details/contacts-details';
 
 export const routes: Routes = [
     {
@@ -30,13 +30,14 @@ export const routes: Routes = [
                 component: ContactsPage
             },
             {
-                path: 'contacts/:id',
-                component: ContactDetailsPage
-            },
-            {   path: 'contacts/new',
+                path: 'contacts/new',
                 component: ContactsNew
             },
-            {   path: 'contacts/:idContacto/edit',
+            {
+                path: 'contacts/:id',
+                component: ContactsDetails
+            },
+            {   path: 'contacts/:id/edit',
                 component: ContactsNew
             },
             {

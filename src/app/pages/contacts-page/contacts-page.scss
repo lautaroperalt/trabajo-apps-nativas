@@ -1,28 +1,31 @@
-li {
-display: flex;
-justify-content: space-between;
-margin: 10px auto;
-padding: 10px;
-width: 80%;
-background-color: lightgray;
-color: rgb(113, 101, 248);
-font-size: 18px;
-font-weight: bold;
-}  
-
-
-a {
-text-decoration: none;
-transition: color 0.3s;
-padding: 10px 20px;
-background-color: rgb(113, 101, 248);
-color: white;
-border: none;
-border-radius: 6px;
-font-weight: bold;
+.gridHeader{
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 2fr 1fr 1fr; /* Nombre, Tel, Email, Grupos, Acciones */
+    column-gap: 12px;
+    align-items: center;
+    width: min(1100px, 95%);
+    margin: 0 auto;
 }
 
-a:hover {
+.list{
+  padding: 10px 12px;
+  background: lightgray;
+  color: rgb(113, 101, 248);
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.title a {
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: rgb(113,101,248);
+  color: #fff;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.title a:hover {
 background-color: darkblue;
 }
 
@@ -32,6 +35,6 @@ font-size: 14px;
 }
 
 .title{
-    display: flex;
-    padding: 5px;
+    display: inline-block;
+    margin: 6px 6px 12px 0;
 }

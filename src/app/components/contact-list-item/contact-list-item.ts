@@ -21,8 +21,8 @@ export class ContactListItem {
       showDenyButton: true,
       showCancelButton: true,
       showConfirmButton: false,
-      cancelButtonText: "cancelar",
-      denyButtonText: `Cerrar sesion`,
+      cancelButtonText: "Cancelar",
+      denyButtonText: `Eliminar para siempre`,
     }).then((result) => {
       if (result.isDenied) {  /* Reviso que haya clickeado el boton rojo */
         this.contactsService.deleteContact(this.contact().id);

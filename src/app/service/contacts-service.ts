@@ -7,6 +7,7 @@ import { AuthService } from './auth-service';
 })
 export class ContactsService {
   AuthService = inject(AuthService);
+  readonly URL_BASE = "https://agenda-api.somee.com/api/contacts";
   contacts: Contact[] = []
 
   /** Obtiene los contactos del backend */
@@ -43,10 +44,13 @@ async createContact(nuevoContacto:NewContact){
     },
       body: JSON.stringify(nuevoContacto), //* lo convierte en JSON
 });
-if (!res.ok){
+if (res.ok){
   const createdContact = await res.json(); //* obtiene el contacto y lo convierte en una variable
   this.contacts.push(createdContact); //* lo pushea a contacts
   return createdContact;
+}else {
+  console.error("Error al crear el contacto:", res.status, res.statusText);
+  return null;
 }
   
   }

@@ -3,22 +3,19 @@
 </div>
 
 <div class="title">
-    <a routerLink="newContact">Crear un contacto</a>
+    <a routerLink="/contacts/new">Crear un contacto</a>
 </div>
-
-<div id="header">
-<ul>
-    <li>
+<ul class="list">
+  <li class="gridHeader">
     <span>Nombre</span>
     <span>Telefono</span>
     <span>Email</span>
     <span>Grupos</span>
     <span>Acciones</span>
-    </li>
-</ul>
-</div>
-<ul>
+</li>
     @for (ContactoIndividual of contactsService.contacts; track $index) {
+       <a [routerLink]="['/contacts', ContactoIndividual.id]">
         <app-contact-list-item [contact] ="ContactoIndividual"></app-contact-list-item>
+        </a>
     }
 </ul>

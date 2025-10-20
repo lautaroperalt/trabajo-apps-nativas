@@ -40,30 +40,32 @@ export class ContactsNew implements OnInit {
 //* Revisa si estamos editando o creando un contacto y ejecuta la funcion correspondiente del servicio de contactos
   async handleFormSubmission(form:NgForm){
     this.errorEnBack = false;
-      const nuevoContacto: NewContact ={
-        firstName: form.value.firstName,
-          lastName: form.value.lastName,
-          address: form.value.address,
-          email: form.value.email,
-          image: form.value.image,
-          number: form.value.number,
-          company: form.value.company,
-          isFavourite: form.value.isFavourite
-      }
-      let res;
+  
+    const nuevoContacto: NewContact ={
+      firstName: form.value.firstName,
+        lastName: form.value.lastName,
+        address: form.value.address,
+        email: form.value.email,
+        image: form.value.image,
+        number: form.value.number,
+        company: form.value.company,
+        isFavourite: form.value.isFavourite
+    };
+  
+    let res;
       //"const res = await this.contactsService.createContact(nuevoContacto);"
-      this.isLoading = true
-      if(this.idContacto()){
-        res = await this.contactsService.editContact({...nuevoContacto,id: this.idContacto()!.toString()})
-      } else{ 
-        res = await this.contactsService.createContact(nuevoContacto);
-      }
-      this.isLoading = false
-      if(!res) {
-        this.errorEnBack = true;
-        return
-      };
-      this.router.navigate(["/contacts",res.id]);  
+    this.isLoading = true;
+    if(this.idContacto()){
+      res = await this.contactsService.editContact({...nuevoContacto,id: this.idContacto()!.toString()})
+    } else{ 
+      res = await this.contactsService.createContact(nuevoContacto);
+    }
+    this.isLoading = false
+    if(!res) {
+      this.errorEnBack = true;
+      return
+    };
+    this.router.navigate(["/contacts",res.id]);  
 
   }
 }
