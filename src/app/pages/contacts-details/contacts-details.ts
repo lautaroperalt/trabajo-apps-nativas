@@ -28,16 +28,15 @@ export class ContactsDetails implements OnInit {
   }
 
   async toggleFavorite(){
-    if(this.contacto){
+    if(!this.contacto) return;
       const res = await this.contactService.setFavourite(this.contacto.id);
       if(res) this.contacto.isFavourite = !this.contacto.isFavourite;
-    }
+    
   }
 
   async deleteContact(){
-    if(this.contacto){
-      const res = await this.contactService.deleteContact(this.contacto.id);
-      if(res) this.router.navigate(['/']);
-    }
+    if(!this.contacto) return;
+    const res = await this.contactService.deleteContact(this.contacto.id);
+    if(res) this.router.navigate(['/']);
   }
 }

@@ -98,7 +98,7 @@ if (!res.ok) return;
         Authorization: "Bearer " + this.AuthService.token,
       },
     });
-    if(!res.ok) return;
+    if(!res.ok) return false;
     /** Edita la lista actual de contactos reemplzanado solamente el favorito */
     this.contacts = this.contacts.map(contact => {
       if(contact.id === id) {
