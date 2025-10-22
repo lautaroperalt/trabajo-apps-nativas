@@ -35,8 +35,7 @@ export class ContactsNew implements OnInit {
         email: this.contactoOriginal!.email,
         image: this.contactoOriginal!.image,
         number: this.contactoOriginal!.number,
-        company: this.contactoOriginal!.company,
-        isFavorite: this.contactoOriginal!.isFavorite
+        company: this.contactoOriginal!.company
       })
     }
   }
@@ -51,8 +50,7 @@ export class ContactsNew implements OnInit {
         email: form.value.email,
         image: form.value.image,
         number: form.value.number,
-        company: form.value.company,
-        isFavorite: form.value.isFavorite
+        company: form.value.company
     };
   
     let res;

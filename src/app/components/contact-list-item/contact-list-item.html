@@ -8,7 +8,6 @@
     </span>
     <span class="data-field">{{contact().number}}</span>
     <span class="data-field email-field">{{contact().email}}</span>
-    <span class="data-field">-</span>
     <span class="data-field actions-field">
         <button type="button" class="button button-alert button-small" (click)="openDeleteModal()">Borrar</button>
         <a class="button button-alt button-small" [routerLink]="['/contacts', contact().id]">Editar</a>

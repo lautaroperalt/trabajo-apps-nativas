@@ -19,7 +19,7 @@
     
     @if (contacto.image) {
       <div class="contact-image-container">
-          <img [src]="contacto.image" alt="Foto de {{contacto.firstName}}" class="contact-photo">
+          <img [src]="contacto.image" alt="Foto de {{contacto.firstName}}" class="contact-photo" (error)="imagenError($event)">
       </div>
   }
 
