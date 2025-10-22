@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { AuthService } from '../../service/auth-service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Spinner } from "../../components/spinner/spinner";
@@ -15,17 +15,22 @@ export class LoginPage {
   errorLogin = false;
   authService = inject(AuthService)  
   isLoading = false;
+  router = inject(Router)
 
   async login(form:NgForm){
-    console.log(form.value)
     this.errorLogin = false;
     if(!form.value.email || !form.value.password){
-      this.errorLogin = true;
       return
     }
 
     this.isLoading = true;
-    await this.authService.login(form.value);
+    const loginExitos = await this.authService.login(form.value);
     this.isLoading = false;
+
+    if(loginExitos){
+      this.router.navigate(['/'])
+    }else{
+      this.errorLogin = true
+    }
   }
 }

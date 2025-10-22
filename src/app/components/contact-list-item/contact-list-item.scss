@@ -1,0 +1,45 @@
+.item-display {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 2.5fr 1fr 1.5fr;
+  padding: 15px 20px;
+  align-items: center;
+  gap: 15px;
+}
+
+.item-display.favorite {
+  background-color: #fff8e1;
+}
+
+.data-field {
+  font-size: 0.95rem;
+  color: #5a6268;
+}
+
+.name-field {
+    font-weight: 500;
+    color: #343a40;
+    display: flex;
+    align-items: center;
+}
+
+.email-field { 
+    font-style: italic;
+    color: #6c757d;
+}
+
+.actions-field { 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-small {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.fav-icon-inline {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}

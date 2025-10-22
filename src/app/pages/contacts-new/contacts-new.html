@@ -1,71 +1,87 @@
 <!-- el idContacto es un input que va siempre con () -->
-@if (id()) { 
-<h2>Editar contacto</h2>
-} @else {
-  <h2>Nuevo contacto</h2>
-}
-<div class="form-container">
-<form (ngSubmit)="handleFormSubmission(newContactForm)" #newContactForm="ngForm">
-  <div class="form-div">
-    <label for="first-name">Nombre</label>
-    <input id="first-name" name="firstName" type="text" ngModel required="true" minlength="2" maxlength="20" #firstName="ngModel">
-  @if (firstName.dirty && firstName.invalid) {
-    <p class="error">El nombre es obligatorio y no puede ser una sola letra</p>
-  }
-  </div>
-  <div class="form-div">
-    <label for="last-name">Apellido</label>
-    <input id="last-name" name="lastName" type="text" ngModel maxlength="20">
+<div class="page-container">
+  <div class="card form-card">
+    <h2 class="form-title">
+        @if (id()) {
+            <span>Editar Contacto</span>
+        } @else {
+            <span>Nuevo Contacto</span>
+        }
+    </h2>
 
-  </div>
-  <div class="form-div">
-    <label for="phone">Telefono</label>
-    <input id="phone" name="number" type="text" ngModel required="true" minlength="3" maxlength="30" #number="ngModel">
-  @if (number.dirty && number.invalid) {
-    <p class="error">El numero es obligatorio y no puede ser una de 3 letras</p>
-  }
-  </div>
-  <div class="form-div">
-    <label for="email">Email</label>
-    <input id="email" name="email" type="email" ngModel maxlength="40"  #email="ngModel">
-  @if (email.dirty && email.invalid) {
-    <p class="error">El email debe llevar un arroba</p>
-  }
-  </div>
-  <div class="form-div">
-    <label for="favourite">Favorito</label>
-    <input id="favourite" name="isFavorite" type="checkbox" ngModel> 
-  </div>
-  <div class="form-div">
-    <label for="address">Direccion</label>
-    <input id="address" name="address" type="text" ngModel minlength="5" #address="ngModel">
-  @if (address.dirty && address.invalid) {
-    <p class="error">La direccion tiene que ser minimo 5 caracteres</p>
-  }
-  </div>
-  <div class="form-div">
-    <label for="company">Companía</label>
-    <input id="company" name="company" type="text" ngModel minlength="2" #company="ngModel">
-  @if (company.dirty && company.invalid) {
-    <p class="error">Tiene que ser de minimo 2 caracteres</p>
-  }
-  </div>
-  <div class="form-div">
-    <label for="image">URL Imagen</label>
-    <input id="image" name="image" type="text" ngModel minlength="10" #image="ngModel">
-  @if (image.dirty && image.invalid) {
-    <p class="error">El url tiene que ser de minimo 10 caracteres</p>
-  }
-  </div>
-  @if (id()) { 
-      <button [disabled]="newContactForm.invalid || isLoading">Editar</button>
-    } @else {
-      <button [disabled]="newContactForm.invalid || isLoading">Crear</button>
-    }
-  
+    <form (ngSubmit)="handleFormSubmission(newContactForm)" #newContactForm="ngForm" class="contact-data-form">
+      <div class="form-item">
+        <label for="first-name">Nombre</label>
+        <input id="first-name" name="firstName" type="text" ngModel required minlength="2" maxlength="20" #firstName="ngModel" class="input-text">
+        @if (firstName.dirty && firstName.invalid) {
+          <span class="text-error">El nombre es obligatorio (mín. 2 letras).</span>
+        }
+      </div>
+
+      <div class="form-item">
+        <label for="last-name">Apellido</label>
+        <input id="last-name" name="lastName" type="text" ngModel maxlength="20" class="input-text">
+      </div>
+
+      <div class="form-item">
+        <label for="phone">Teléfono</label>
+        <input id="phone" name="number" type="tel" ngModel required minlength="3" maxlength="30" #number="ngModel" class="input-text">
+        @if (number.dirty && number.invalid) {
+          <span class="text-error">El teléfono es obligatorio (mín. 3 números).</span>
+        }
+      </div>
+
+      <div class="form-item">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" ngModel email maxlength="40" #email="ngModel" class="input-text">
+        @if (email.dirty && email.invalid && email.errors?.['email']) {
+          <span class="text-error">Formato de email incorrecto.</span>
+        }
+      </div>
+
+      <div class="form-item-inline">
+        <input id="favourite" name="isFavorite" type="checkbox" ngModel class="input-check">
+        <label for="favourite">Marcar como favorito</label>
+      </div>
+
+      <div class="form-item">
+        <label for="address">Dirección</label>
+        <input id="address" name="address" type="text" ngModel minlength="5" #address="ngModel" class="input-text">
+        @if (address.dirty && address.invalid) {
+          <span class="text-error">Mínimo 5 caracteres.</span>
+        }
+      </div>
+
+      <div class="form-item">
+        <label for="company">Compañía</label>
+        <input id="company" name="company" type="text" ngModel minlength="2" #company="ngModel" class="input-text">
+        @if (company.dirty && company.invalid) {
+           <span class="text-error">Mínimo 2 caracteres.</span>
+        }
+      </div>
+
+      <div class="form-item">
+        <label for="image">URL Imagen</label>
+        <input id="image" name="image" type="text" ngModel minlength="10" #image="ngModel" class="input-text">
+         @if (image.dirty && image.invalid) {
+           <span class="text-error">Mínimo 10 caracteres.</span>
+        }
+      </div>
+
+      <div class="form-actions">
+          <button type="submit" [disabled]="newContactForm.invalid || isLoading" class="button button-main button-full">
+            @if (id()) {
+                <span>Guardar Cambios</span>
+            } @else {
+                <span>Crear Contacto</span>
+            }
+          </button>
+      </div>
+      
   @if (isLoading){
-    <app-spinner></app-spinner>
-    }
-  
+    <div class="spinner-area">
+      <app-spinner></app-spinner>
+    </div>
+  }
  </form>
 </div>

@@ -1,40 +1,58 @@
-.gridHeader{
-    display: grid;
-    grid-template-columns: 2fr 1.2fr 2fr 1fr 1fr; /* Nombre, Tel, Email, Grupos, Acciones */
-    column-gap: 12px;
-    align-items: center;
-    width: min(1100px, 95%);
-    margin: 0 auto;
+.page-area {
+  padding: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.list{
-  padding: 10px 12px;
-  background: lightgray;
-  color: rgb(113, 101, 248);
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 6px;
+.action-bar {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 15px;
 }
 
-.title a {
-  text-decoration: none;
-  padding: 10px 20px;
-  background-color: rgb(113,101,248);
-  color: #fff;
-  border-radius: 6px;
-  font-weight: bold;
+
+
+.button-main {
+  background-color: #ff8c42;
+  color: white;
 }
 
-.title a:hover {
-background-color: darkblue;
+
+.list-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #ede7e1;
+  padding: 0;
 }
 
-.error {
-color: red;
-font-size: 14px;
+.list-header-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 2.5fr 1fr 1.5fr;
+  padding: 15px 25px;
+  background-color: #fff9f5;
+  border-bottom: 1px solid #ede7e1;
+  gap: 15px;
 }
 
-.title{
-    display: inline-block;
-    margin: 6px 6px 12px 0;
+.column-title {
+  color: #a08c7d;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  
+}
+
+.header-cell {
+    padding-right: 10px;
+}
+
+.no-items-message {
+  padding: 40px 25px;
+  text-align: center;
+}
+.no-items-message span {
+  color: #b0a093;
+  font-style: italic;
+  font-size: 1.1rem;
 }

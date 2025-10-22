@@ -1,21 +1,24 @@
-<div class="title">
-    <a routerLink="login">Ir a login</a>
-</div>
-
-<div class="title">
-    <a routerLink="/contacts/new">Crear un contacto</a>
-</div>
-<ul class="list">
-  <li class="gridHeader">
-    <span>Nombre</span>
-    <span>Telefono</span>
-    <span>Email</span>
-    <span>Grupos</span>
-    <span>Acciones</span>
-</li>
-<ul class="list">
-    @for (ContactoIndividual of contactsOrdenados(); track $index) {
-          <app-contact-list-item [contact] ="ContactoIndividual"></app-contact-list-item>
-      }
-  </ul>
-</ul>
+<div class="page-area">
+    <div class="action-bar">
+      <div class="button-wrapper">
+        <a routerLink="/contacts/new" class="button button-main">Crear un contacto</a>
+      </div>
+    </div>
+  
+    <div class="list-container card">
+      <div class="list-header-row">
+        <span class="column-title">Nombre</span>
+        <span class="column-title">Teléfono</span>
+        <span class="column-title">Email</span>
+        <span class="column-title">Grupos</span>
+        <span class="column-title">Acciones</span>
+      </div>
+      <div class="list-content">
+        @for (contactItem of contactsOrdenados(); track contactItem.id) {
+          <div class="list-item-wrapper">
+            <app-contact-list-item [contact]="contactItem"></app-contact-list-item>
+          </div>
+        }
+      </div>
+    </div>
+  </div>

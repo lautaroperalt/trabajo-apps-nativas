@@ -2,11 +2,12 @@ import { Component, inject, input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ContactsService } from '../../service/contacts-service';
 import { Contact } from '../../Interfaces/contact';
+import { Spinner } from '../../components/spinner/spinner';
 
 
 @Component({
   selector: 'app-contacts-details',
-  imports: [RouterModule],
+  imports: [RouterModule, Spinner],
   templateUrl: './contacts-details.html',
   styleUrl: './contacts-details.scss'
 })

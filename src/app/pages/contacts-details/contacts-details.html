@@ -1,20 +1,56 @@
-@if(cargandoContacto){
-  <p>Cargando contacto...</p>
-} @else if(!contacto) {
-  <p>No se encontró el contacto</p>
-} @else {
-  <h1>{{contacto.firstName}} {{contacto.lastName}}</h1>
-  <p>Email: {{contacto.email}}</p>
-  <p>Teléfono: {{contacto.number}}</p>
-  
-@if (contacto.isFavorite) {
-  <p>⭐</p>
-  <button (click)="toggleFavorite()">Desmarcar favorito</button>
-} @else {
-  <button (click)="toggleFavorite()">Marcar como favorito</button>
-}
-  <p>
-    <a [routerLink]="['/contacts',id(),'edit']">Editar</a>
-  </p>
-  <button (click)="deleteContact()">Eliminar</button>
-}
+<div class="page-container">
+  @if(cargandoContacto){
+      <div class="loading-message">
+          <app-spinner></app-spinner>
+          <span>Cargando contacto...</span>
+      </div>
+  } @else if(!contacto) {
+      <div class="card error-card">
+          <p>No se encontró el contacto solicitado.</p>
+      </div>
+  } @else {
+    <div class="card contact-details-card">
+      <div class="contact-header">
+        <h1 class="contact-name">{{contacto.firstName}} {{contacto.lastName}}</h1>
+        @if (contacto.isFavorite) {
+          <span class="favorite-badge">⭐ Favorito</span>
+      }
+    </div>
+    
+    @if (contacto.image) {
+      <div class="contact-image-container">
+          <img [src]="contacto.image" alt="Foto de {{contacto.firstName}}" class="contact-photo">
+      </div>
+  }
+
+  <div class="contact-info">
+    <div class="info-item">
+        <span class="info-label">Email:</span>
+        <span class="info-value">{{contacto.email || '-'}}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Teléfono:</span>
+        <span class="info-value">{{contacto.number || '-'}}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Dirección:</span>
+        <span class="info-value">{{contacto.address || '-'}}</span>
+    </div>
+      <div class="info-item">
+        <span class="info-label">Compañía:</span>
+        <span class="info-value">{{contacto.company || '-'}}</span>
+    </div>
+  </div>
+
+<div class="contact-actions">
+                @if (contacto.isFavorite) {
+                    <button type="button" (click)="toggleFavorite()" class="button button-alt">Quitar Favorito</button>
+                } @else {
+                    <button type="button" (click)="toggleFavorite()" class="button button-main">Marcar Favorito</button>
+                }
+                <a [routerLink]="['/contacts',id(),'edit']" class="button button-secondary">Editar</a>
+                <button type="button" (click)="deleteContact()" class="button button-alert">Eliminar</button>
+            </div>
+        </div>
+    }
+</div>

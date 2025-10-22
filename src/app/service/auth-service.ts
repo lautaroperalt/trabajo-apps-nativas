@@ -28,7 +28,9 @@ export class AuthService implements OnInit{
   if(res.ok){
     this.token = await res.text()
     localStorage.setItem("token", this.token)
-    this.router.navigate(["/"])
+    return true;
+  } else {
+    return false
   }
   }
 

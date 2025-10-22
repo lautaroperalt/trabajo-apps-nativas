@@ -1,16 +1,18 @@
-
-<div  class="contactRow" [class.favorite]="contact().isFavorite === true">
-    <span>
-        @if (contact().isFavorite) { ⭐ }
+<div class="item-display" [class.favorite]="contact().isFavorite">
+    <span class="cell name-cell">
+        @if (contact().isFavorite) {
+            <span class="fav-icon-inline">⭐</span>
+        }
         {{ contact().firstName }} {{ contact().lastName }}
+    
     </span>
-    <span>{{contact().number}}</span>
-    <span>{{contact().email}}</span>
-    <span>-</span>
-    <span class="actions">
-        <button  type="button" class="mainButton" (click)="openDeleteModal()">Borrar</button>
-        <a  class="btnLink" [routerLink]="['/contacts', contact().id]">Editar</a>
-    </span>
+    <span class="data-field">{{contact().number}}</span>
+    <span class="data-field email-field">{{contact().email}}</span>
+    <span class="data-field">-</span>
+    <span class="data-field actions-field">
+        <button type="button" class="button button-alert button-small" (click)="openDeleteModal()">Borrar</button>
+        <a class="button button-alt button-small" [routerLink]="['/contacts', contact().id]">Editar</a>
+        </span>
 </div>
 
 <!-- Si quiero mostrar todos los atributos, los agrego aca --> 
