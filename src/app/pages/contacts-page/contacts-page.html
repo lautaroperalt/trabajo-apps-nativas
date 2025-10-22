@@ -13,7 +13,9 @@
     <span>Grupos</span>
     <span>Acciones</span>
 </li>
-    @for (ContactoIndividual of contactsService.contacts; track $index) {
-        <app-contact-list-item [contact] ="ContactoIndividual"></app-contact-list-item>
-    }
+<ul class="list">
+    @for (ContactoIndividual of contactsOrdenados(); track $index) {
+          <app-contact-list-item [contact] ="ContactoIndividual"></app-contact-list-item>
+      }
+  </ul>
 </ul>

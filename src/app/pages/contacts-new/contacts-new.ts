@@ -36,7 +36,7 @@ export class ContactsNew implements OnInit {
         image: this.contactoOriginal!.image,
         number: this.contactoOriginal!.number,
         company: this.contactoOriginal!.company,
-        isFavourite: this.contactoOriginal!.isFavorite
+        isFavorite: this.contactoOriginal!.isFavorite
       })
     }
   }

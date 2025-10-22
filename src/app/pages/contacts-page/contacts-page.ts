@@ -21,11 +21,22 @@ export class ContactsPage implements OnInit{
 
   contactsOrdenados(){
     const lista = this.contactsService.contacts.slice();
+
     return lista.sort((a, b) => { 
-      if (a.isFavorite && !b.isFavorite) return -1;
-      if (!a.isFavorite && b.isFavorite) return 1;
-      const nF = (a.firstName || '').localeCompare(b.firstName || '');
-      if (nF !== 0) return nF;  
+
+      const esFavoritoA = a.isFavorite;
+      const esFavoritoB = b.isFavorite;
+      
+      if (esFavoritoA && !esFavoritoB) {
+        return -1;
+      }
+      if (!esFavoritoA && esFavoritoB) {
+        return 1;
+      }
+        const comparacionNmbr = (a.firstName || '').localeCompare(b.firstName || '');
+      if (comparacionNmbr !== 0){
+        return comparacionNmbr
+      }  
       return (a.lastName || '').localeCompare(b.lastName || '');
     });
     }
