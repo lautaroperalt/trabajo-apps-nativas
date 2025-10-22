@@ -22,8 +22,8 @@ export class ContactsPage implements OnInit{
   contactsOrdenados(){
     const lista = this.contactsService.contacts.slice();
     return lista.sort((a, b) => { 
-      if (a.isFavourite && !b.isFavourite) return -1;
-      if (!a.isFavourite && b.isFavourite) return 1;
+      if (a.isFavorite && !b.isFavorite) return -1;
+      if (!a.isFavorite && b.isFavorite) return 1;
       const nF = (a.firstName || '').localeCompare(b.firstName || '');
       if (nF !== 0) return nF;  
       return (a.lastName || '').localeCompare(b.lastName || '');

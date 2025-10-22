@@ -1,15 +1,15 @@
 
-<div  class="contactRow" [class.favourite]="!!contact().isFavourite">
+<div  class="contactRow" [class.favorite]="contact().isFavorite === true">
     <span>
-        @if (contact().isFavourite) {<span aria-label="Favorito">⭐</span>}
-        <a [routerLink]="['/contacts', contact().id]">{{contact().firstName}} {{contact().lastName}}</a>
+        @if (contact().isFavorite) { ⭐ }
+        {{ contact().firstName }} {{ contact().lastName }}
     </span>
     <span>{{contact().number}}</span>
     <span>{{contact().email}}</span>
     <span>-</span>
     <span class="actions">
-        <button class="mainButton" (click)="openDeleteModal()">Borrar</button>
-        <a  class="btnLink"[routerLink]="['/contacts', contact().id, 'edit']"> Editar</a>
+        <button  type="button" class="mainButton" (click)="openDeleteModal()">Borrar</button>
+        <a  class="btnLink" [routerLink]="['/contacts', contact().id]">Editar</a>
     </span>
 </div>
 

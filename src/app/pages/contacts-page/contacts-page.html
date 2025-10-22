@@ -14,8 +14,6 @@
     <span>Acciones</span>
 </li>
     @for (ContactoIndividual of contactsService.contacts; track $index) {
-       <a [routerLink]="['/contacts', ContactoIndividual.id]">
         <app-contact-list-item [contact] ="ContactoIndividual"></app-contact-list-item>
-        </a>
     }
 </ul>

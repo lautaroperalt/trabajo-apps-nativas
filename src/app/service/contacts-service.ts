@@ -56,7 +56,7 @@ if (res.ok){
   }
   
 async editContact (contactoEditado:Contact){
-  const res = await fetch("https://agenda-api.somee.com/api/contacts/"+contactoEditado.id,
+  const res = await fetch(this.URL_BASE+"/"+contactoEditado.id,
     {
       method: "PUT",
       headers:{
@@ -78,7 +78,7 @@ if (!res.ok) return;
 }
   
   async deleteContact(id: string | number){
-    const res = await fetch("https://agenda-api.somee.com/api/contacts/"+id,
+    const res = await fetch(this.URL_BASE+"/"+id,
     {
       method: "DELETE",
       headers:{
@@ -90,19 +90,19 @@ if (!res.ok) return;
     return true;
   }
   
-  async setFavourite(id:string | number ){
-    const res = await fetch("https://agenda-api.somee.com/api/contacts/"+id+"favourite",
+  async setFavorite(id:string | number ){
+    const res = await fetch(this.URL_BASE+"/"+id+"/favorite",
     {
       method: "POST",
       headers:{
         Authorization: "Bearer " + this.AuthService.token,
       },
     });
-    if(!res.ok) return false;
+    if(!res.ok) return;
     /** Edita la lista actual de contactos reemplzanado solamente el favorito */
     this.contacts = this.contacts.map(contact => {
       if(contact.id === id) {
-        return {...contact, isFavorite: !contact.isFavourite};
+        return {...contact, isFavorite: !contact.isFavorite};
       };
       return contact;
     });

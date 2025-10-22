@@ -6,7 +6,6 @@ import { RegisterPage } from './pages/register-page/register-page';
 import { onlyPublicUserGuard } from './guards/only-public-user-guard';
 import { onlyLoggedUserGuard } from './guards/only-logged-user-guard';
 import { ContactsNew } from './pages/contacts-new/contacts-new';
-import { Groups } from './pages/groups/groups';
 import { ContactsDetails } from './pages/contacts-details/contacts-details';
 
 export const routes: Routes = [
@@ -39,11 +38,7 @@ export const routes: Routes = [
             },
             {   path: 'contacts/:id/edit',
                 component: ContactsNew
-            },
-            {
-                path: "groups",
-                component: Groups
-            },
+            }
         ]
     },
 ];

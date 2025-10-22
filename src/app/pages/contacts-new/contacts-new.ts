@@ -14,16 +14,19 @@ import { Spinner } from '../../components/spinner/spinner';
 export class ContactsNew implements OnInit {
   contactsService = inject(ContactsService);
   router = inject(Router)
+
   errorEnBack = false;
   
-  idContacto = input<number>();
-  contactoOriginal:Contact|undefined = undefined;
+  id = input<string>();
+  contactoOriginal:Contact|undefined;
+  
   form = viewChild<NgForm>('newContactForm');
   isLoading = false
 
   async ngOnInit() {
-    if(this.idContacto()){
-      this.contactoOriginal = await this.contactsService.getContactById(this.idContacto()!);
+    if(this.id()){
+      this.contactoOriginal = await this.contactsService.getContactById(this.id()!);
+
       // Cambio los valores del formulario
       this.form()?.setValue({
         firstName: this.contactoOriginal!.firstName,
@@ -33,7 +36,7 @@ export class ContactsNew implements OnInit {
         image: this.contactoOriginal!.image,
         number: this.contactoOriginal!.number,
         company: this.contactoOriginal!.company,
-        isFavourite: this.contactoOriginal!.isFavourite
+        isFavourite: this.contactoOriginal!.isFavorite
       })
     }
   }
@@ -49,14 +52,14 @@ export class ContactsNew implements OnInit {
         image: form.value.image,
         number: form.value.number,
         company: form.value.company,
-        isFavourite: form.value.isFavourite
+        isFavorite: form.value.isFavorite
     };
   
     let res;
       //"const res = await this.contactsService.createContact(nuevoContacto);"
     this.isLoading = true;
-    if(this.idContacto()){
-      res = await this.contactsService.editContact({...nuevoContacto,id: this.idContacto()!.toString()})
+    if(this.id()){
+      res = await this.contactsService.editContact({...nuevoContacto,id: this.id()!.toString()})
     } else{ 
       res = await this.contactsService.createContact(nuevoContacto);
     }
